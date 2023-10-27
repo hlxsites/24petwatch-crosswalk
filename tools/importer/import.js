@@ -194,6 +194,34 @@ const createGrids = (main, document, newMain) => {
         img.setAttribute('src', imgSrc);
         div.append(img);
       }
+
+      // CTA button
+      if ( cols[i].querySelector('.cmp-button') ) {
+        const cta = document.createElement('a');
+        const ctaHref = cols[i].querySelector('a').getAttribute('href');
+        const ctaText = cols[i].querySelector('.cmp-button').textContent;
+        cta.setAttribute('href', ctaHref);
+        cta.textContent = ctaText;
+        
+        // If link opens in a new window, render it in bold
+        if( cols[i].querySelector('.cmp-button').getAttribute('target') === '_blank') {
+          const strong = document.createElement('strong');
+          strong.append(cta);
+          div.append(strong);  
+          console.log(i);
+          console.log('strong')
+          console.log(cols[i].querySelector('.cmp-button').getAttribute('target'));
+        }
+        // If link opens in current window, render it as normal
+        else {
+          div.append(cta);
+          console.log(i);
+          console.log('not strong');
+          console.log(cols[i].querySelector('.cmp-button').getAttribute('target'));
+          console.log(cols[i].querySelector('.cmp-button').getAttribute('target'));
+          console.log(cols[i].querySelector('.cmp-button').hasAttribute('target'));
+        }
+      }
  
       // Check if current and next nodes are siblings and if so, add current node to grid, otherwise output current grid
       // First see if next element exists and if not print grid as-is
