@@ -1,5 +1,5 @@
 mappings:
-  - /:/index
+  - /content/24petwatch/us/en:/
 
 includes:
-  - /
+  - /content/24petwatch/us/en

@@ -60,7 +60,6 @@ export function mapInbound(path, cfg = pathsCfg) {
       path = path.substring(0, path.length - extension.length);
     }
 
-    path = '/'
     const reversedMappings = cfg.mappings.reverse();
     for (let i = 0; i < reversedMappings.length; i += 1) {
       const mapping = reversedMappings[i];

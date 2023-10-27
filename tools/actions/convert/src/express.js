@@ -28,15 +28,15 @@ const handler = (req, res) => {
     ...query,
   };
 
-  // if (AEM_USER && AEM_PASSWORD) {
-  //   params.authorization = `Basic ${Buffer.from(`${AEM_USER}:${AEM_PASSWORD}`).toString('base64')}`;
-  //   params.wcmmode = 'disabled';
-  // }
+  if (AEM_USER && AEM_PASSWORD) {
+    params.authorization = `Basic ${Buffer.from(`${AEM_USER}:${AEM_PASSWORD}`).toString('base64')}`;
+    params.wcmmode = 'disabled';
+  }
 
   let serveMd = false;
   if (path.endsWith('.md')) {
     serveMd = true;
-    path = `${path.substring(0, path.length - 3)}`;
+    path = `${path.substring(0, path.length - 3)}.html`;
   }
 
   render(path, params).then(({ html, md, error }) => {

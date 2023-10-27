@@ -136,9 +136,10 @@ const createColumns = (main, document, newMain) => {
       cols,
     ];
   
-    const block = WebImporter.DOMUtils.createTable(cells, document);
-    newMain.append(block);
-
+    if (cols.length > 0) {
+      const block = WebImporter.DOMUtils.createTable(cells, document);
+      newMain.append(block);
+    }
   }
 
 };
