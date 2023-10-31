@@ -14,7 +14,10 @@ import {
   loadBlocks,
   loadCSS,
   getMetadata,
-  toClassName,
+  getAllMetadata,
+  isDesktop,
+  isMobile,
+  isTablet,
 } from './lib-franklin.js';
 
 import {
@@ -28,6 +31,27 @@ import {
 } from './lib-analytics.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
+
+const AUDIENCES = {
+  mobile: () => isMobile,
+  tablet: () => isTablet,
+  desktop: () => isDesktop,
+  // define your custom audiences here as needed
+};
+
+window.hlx.plugins.add('rum-conversion', {
+  url: '/plugins/rum-conversion/src/index.js',
+  load: 'lazy',
+});
+
+window.hlx.plugins.add('experience-decisioning', {
+  condition: () => getMetadata('experiment')
+    || Object.keys(getAllMetadata('campaign')).length
+    || Object.keys(getAllMetadata('audience')).length,
+  options: { audiences: AUDIENCES },
+  load: 'eager',
+  url: '/plugins/experience-decisioning/src/index.js',
+});
 
 /**
  * Builds hero block and prepends to main in a new section.
@@ -79,6 +103,9 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+
+  await window.hlx.plugins.run('loadEager');
+
   const main = doc.querySelector('main');
   if (main) {
     createInlineScript(document, document.body, getAlloyInitScript(), 'text/javascript');
@@ -90,14 +117,6 @@ async function loadEager(doc) {
 }
 
 async function initializeConversionTracking() {
-  const context = {
-    getMetadata,
-    toClassName,
-  };
-  // eslint-disable-next-line import/no-relative-packages
-  const { initConversionTracking } = await import('../plugins/rum-conversion/src/index.js');
-  await initConversionTracking.call(context, document);
-
   // call upon conversion events, sends them to alloy
   sampleRUM.always.on('convert', async (data) => {
     const { element } = data;
@@ -152,6 +171,8 @@ async function loadLazy(doc) {
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
 
+  window.hlx.plugins.run('loadLazy');
+
   await setupAnalyticsTrackingWithAlloy(document);
   await setupAnalyticsTrackingWithGTM();
   analyticsSetConsent(true);
@@ -165,12 +186,19 @@ async function loadLazy(doc) {
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import('./delayed.js'), 3000);
+  window.setTimeout(() => {
+    window.hlx.plugins.load('delayed');
+    window.hlx.plugins.run('loadDelayed');
+    // eslint-disable-next-line import/no-cycle
+    return import('./delayed.js');
+  }, 3000);
   // load anything that can be postponed to the latest here
 }
 
 async function loadPage() {
+  await window.hlx.plugins.load('eager');
   await loadEager(document);
+  await window.hlx.plugins.load('lazy');
   await loadLazy(document);
   loadDelayed();
 }
