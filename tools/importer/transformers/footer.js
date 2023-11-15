@@ -1,9 +1,31 @@
+const iconLinks = {
+  '/content/24petwatch/us/en/contact-us.html': 'contactus',
+  'tel:': 'phone',
+  'https://instagram.com': 'instagram',
+  'https://www.facebook.com': 'facebook',
+  'https://twitter.com': 'twitter',
+};
+
+function getIconLink(link) {
+  const iconLink = Object.keys(iconLinks).find((key) => link.startsWith(key));
+  return iconLink ? iconLinks[iconLink] : null;
+}
+
 function processEntry(entry, main, document) {
   const title = entry.querySelector('*:is(h2, h3, h4, h5, h6)');
   const ul = document.createElement('ul');
   entry.querySelectorAll('div.text p').forEach((e) => {
     const li = document.createElement('li');
-    li.append(e.querySelector('a'));
+    const link = e.querySelector('a');
+    const icon = getIconLink(link.getAttribute('href'));
+
+    if (icon) {
+      const iconSpan = document.createElement('span');
+      iconSpan.textContent = `:${icon}:`;
+      li.append(iconSpan);
+    }
+
+    li.append(link);
     ul.append(li);
   });
   if (title !== null) {
