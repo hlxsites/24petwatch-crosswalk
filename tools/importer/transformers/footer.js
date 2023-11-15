@@ -3,7 +3,7 @@ function processEntry(entry, main, document) {
   const ul = document.createElement('ul');
   entry.querySelectorAll('div.text p').forEach((e) => {
     const li = document.createElement('li');
-    li.append(e);
+    li.append(e.querySelector('a'));
     ul.append(li);
   });
   if (title !== null) {
