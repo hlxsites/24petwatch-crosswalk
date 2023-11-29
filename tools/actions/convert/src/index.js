@@ -24,3 +24,4 @@ export function main(...args) {
     .wrap(toRuntime, { transform, converterCfg, mappingCfg })
     .apply(this, args);
 }
+
