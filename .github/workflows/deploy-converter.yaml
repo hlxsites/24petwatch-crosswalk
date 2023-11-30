@@ -48,7 +48,7 @@ jobs:
     - run: npm ci
     - run: npm run converter:test
     - run: npm run converter:build:prod
-    - run: npm run converter:deploy -- convert/${ACTION_NAME}
+    - run: npm run converter:deploy -- main/${ACTION_NAME}
       env:
         ACTION_NAME: ${{ github.head_ref || github.ref_name }}
         WSK_AUTH: ${{ secrets.WSK_AUTH }}
