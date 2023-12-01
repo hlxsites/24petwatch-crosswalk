@@ -62,8 +62,6 @@ function createSection(currentBlock, main, document) {
       break;
     }
   }
-
-  main.append(document.createElement('hr'));
 }
 
 // Generalize creating columns from grids
@@ -76,6 +74,10 @@ const createHomepage = (main, document) => {
   if (sectionRaw) {
     for (let i = 0; i < sectionRaw.length; i += 1) {
       createSection(sectionRaw[i], main, document);
+
+      if (i < sectionRaw.length - 1) {
+        main.append(document.createElement('hr'));
+      }
     }
   }
 };
