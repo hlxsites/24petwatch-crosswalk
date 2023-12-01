@@ -94,15 +94,11 @@ function createBlogCard(item = {}) {
   let { title, image, path } = item;
   const { description } = item;
 
-  if (!window.location.hostname.includes('localhost')) {
-    path = new URL(path, 'https://main--24petwatch--hlxsites.hlx.live').toString();
-  }
+  path = new URL(path, 'https://main--24petwatch--hlxsites.hlx.live').toString();
 
   try {
-    image = new URL(image, window.location);
-    image.hostname = window.location.hostname;
-    image.port = window.location.port;
-    image.protocol = window.location.protocol;
+    image = new URL(image, 'https://main--24petwatch--hlxsites.hlx.live');
+    image.hostname = 'main--24petwatch--hlxsites.hlx.live';
   } catch (e) { /* ignore */ }
   if (title.startsWith('24Petwatch: ')) {
     title = title.replace('24Petwatch: ', '');
@@ -279,10 +275,15 @@ export default async function decorate(block) {
       } else {
         div.className = 'cards-card-body';
         const h4 = li.querySelector('h4');
-        wrapInAnchor(h4, href);
+        if (h4) {
+          wrapInAnchor(h4, href);
+        }
       }
     });
-    ul.append(li);
+
+    if (li.textContent.trim() !== '') {
+      ul.append(li);
+    }
   });
 
   [...ul.querySelectorAll('img')]

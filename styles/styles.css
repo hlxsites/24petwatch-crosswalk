@@ -360,7 +360,7 @@ main .section.teal-bg, main .section.teal {
   color: white;
 }
 
-main .section.gray-bg, main .section.lightcool {
+main .section.gray-bg, main .section.lightcool, main .section.gray-bg, main .section.lightgray {
   background-color: #e7e9ea;
 }
 
