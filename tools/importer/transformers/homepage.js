@@ -3,7 +3,8 @@
 import createCarousel from './carousel.js';
 import createColumns from './columns.js';
 import createTeaser from './teaser.js';
-import createImageList from './imageList.js';
+import createImageList from './imageList.js'; 
+import createOverflowHero from './overflowHero.js';
 
 function createSection(currentBlock, main, document) {
   if (currentBlock.textContent.trim() === '') {
@@ -28,6 +29,11 @@ function createSection(currentBlock, main, document) {
   const grid = currentBlock.querySelector('div.aem-Grid div.aem-GridColumn');
   if (!teaser && grid) {
     createColumns(currentBlock, main, document);
+  }
+
+  const overflowHero = currentBlock.querySelector('div.overflowhero');
+  if (overflowHero) {
+    createOverflowHero(currentBlock, main, document);
   }
 
   const imageList = currentBlock.querySelector('div.aem-Grid.aem-Grid--12.aem-Grid--default--12 ul.cmp-image-list__list');
