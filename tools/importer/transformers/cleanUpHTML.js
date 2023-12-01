@@ -13,6 +13,19 @@ function cleanUpHTML(main, document) {
     e.outerHTML = `<em>${e.textContent}</em>`;
   });
 
+  main.querySelectorAll('div.button').forEach((e) => {
+    const importedLink = e.querySelector('a');
+    const buttonType = importedLink.getAttribute('href').startsWith('https://')
+      ? 'em'
+      : 'strong';
+    const cta = document.createElement('a');
+    const button = document.createElement(buttonType);
+    cta.setAttribute('href', importedLink.getAttribute('href'));
+    cta.textContent = importedLink.textContent;
+    button.append(cta);
+    e.outerHTML = button.outerHTML;
+  })
+
   return main;
 };
 
