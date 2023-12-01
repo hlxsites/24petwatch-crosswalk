@@ -12,19 +12,19 @@ function createSection(currentBlock, main, document) {
     return;
   }
 
+  const teaser = currentBlock.querySelector('div.teaser');
+  if (teaser) {
+    createTeaser(main, document);
+  }
+
   const gridFlex = currentBlock.querySelector('div.cmp-container--layoutflex div.aem-Grid div.aem-GridColumn');
-  if (gridFlex) {
+  if (!teaser && gridFlex) {
     createColumnsFlex(currentBlock, main, document);
   }
 
   const headers = currentBlock.querySelector('div.headers.aem-GridColumn--default--12');
   if (headers) {
     main.append(headers);
-  }
-
-  const teaser = currentBlock.querySelector('div.teaser');
-  if (teaser) {
-    createTeaser(main, document);
   }
 
   const carousel = currentBlock.querySelector('div.carousel');
