@@ -9,6 +9,10 @@ function cleanUpHTML(main, document) {
     e.outerHTML = `<b>${e.textContent}</b>`;
   });
 
+  main.querySelectorAll('div.cmp-text-specialfineprint ').forEach((e) => {
+    e.outerHTML = `<em>${e.textContent}</em>`;
+  });
+
   return main;
 };
 

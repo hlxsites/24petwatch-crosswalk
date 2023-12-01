@@ -5,10 +5,16 @@ import createColumns from './columns.js';
 import createTeaser from './teaser.js';
 import createImageList from './imageList.js'; 
 import createOverflowHero from './overflowHero.js';
+import createColumnsFlex from './columnsFlex.js';
 
 function createSection(currentBlock, main, document) {
   if (currentBlock.textContent.trim() === '') {
     return;
+  }
+
+  const gridFlex = currentBlock.querySelector('div.cmp-container--layoutflex div.aem-Grid div.aem-GridColumn');
+  if (gridFlex) {
+    createColumnsFlex(currentBlock, main, document);
   }
 
   const headers = currentBlock.querySelector('div.headers.aem-GridColumn--default--12');
