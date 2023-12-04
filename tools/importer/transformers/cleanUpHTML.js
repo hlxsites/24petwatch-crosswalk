@@ -3,6 +3,7 @@ function cleanUpHTML(main, document) {
   // to remove /content/24petwatch/us/en' from internal URL
   main.querySelectorAll('a').forEach((anc) => {
     anc.href = anc.href.replace('/content/24petwatch/us/en', '');
+    anc.href = anc.href.replace('/content/24petwatch/language-masters/en', '');
   });
 
   main.querySelectorAll('span.cmp-text--largetext').forEach((e) => {
