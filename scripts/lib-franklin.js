@@ -480,7 +480,8 @@ export async function loadBlocks(main) {
  * @returns {Element} The picture element
  */
 export function createOptimizedPicture(src, alt = '', eager = false, breakpoints = [{ media: '(min-width: 600px)', width: '2000' }, { width: '750' }]) {
-  let url, pathname;
+  let url;
+  let pathname;
   if (!window.location.hostname.includes('24petwatch.com')) {
     url = new URL(src);
     pathname = src;
@@ -489,7 +490,7 @@ export function createOptimizedPicture(src, alt = '', eager = false, breakpoints
     pathname = url.pathname;
   }
   const picture = document.createElement('picture');
-  
+
   const ext = pathname.substring(pathname.lastIndexOf('.') + 1);
 
   // webp
