@@ -480,7 +480,7 @@ export async function loadBlocks(main) {
  * @returns {Element} The picture element
  */
 export function createOptimizedPicture(src, alt = '', eager = false, breakpoints = [{ media: '(min-width: 600px)', width: '2000' }, { width: '750' }]) {
-  const url = new URL(src)
+  const url = new URL(src);
   const picture = document.createElement('picture');
   const { pathname } = url;
   const ext = pathname.substring(pathname.lastIndexOf('.') + 1);

@@ -11,14 +11,14 @@ function createColumns(currentBlock, main, document) {
 
   const cells = [];
   for (let i = 0; i < cols.length; i += 1) {
-   cells.push(cols[i]);
+    cells.push(cols[i]);
   }
 
   const columns = [
     ['Columns'],
-    cells
+    cells,
   ];
-    
+
   const block = WebImporter.DOMUtils.createTable(columns, document);
   main.append(block);
 }

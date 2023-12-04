@@ -17,7 +17,7 @@ function createImageList(currentBlock, main, document) {
   // Build array for image list and add to document as a table with one cell
   const cells = [
     ['Cards (blog-teaser)'],
-    ['']
+    [''],
   ];
 
   const block = WebImporter.DOMUtils.createTable(cells, document);

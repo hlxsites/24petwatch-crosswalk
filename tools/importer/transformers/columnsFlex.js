@@ -5,7 +5,7 @@ function createColumnsFlex(currentBlock, main, document) {
   if (cols.length === 0) {
     return;
   }
-  let cells = [];
+  const cells = [];
 
   for (let i = 0; i < cols.length; i += 1) {
     cells.push(cols[i]);

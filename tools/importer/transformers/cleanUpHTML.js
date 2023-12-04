@@ -1,4 +1,3 @@
-/* global WebImporter */
 function cleanUpHTML(main, document) {
   // to remove /content/24petwatch/us/en' from internal URL
   main.querySelectorAll('a').forEach((anc) => {
@@ -25,9 +24,9 @@ function cleanUpHTML(main, document) {
     cta.textContent = importedLink.textContent;
     button.append(cta);
     e.outerHTML = button.outerHTML;
-  })
+  });
 
   return main;
-};
+}
 
 export default cleanUpHTML;
