@@ -34,14 +34,12 @@ function createOverflowHero(currentBlock, main, document) {
     }
 
     currentBlock.append(discountParagraph);
-
     blockClassList.push('discount');
   }
 
   let blockTitle;
   if (blockClassList.length > 0) {
-   // blockTitle = title + ' (' + blockClassList.join(',') + ')';
-   blockTitle = `${title} (${blockClassList.join(',')})`;
+    blockTitle = `${title} (${blockClassList.join(',')})`;
   } else {
     blockTitle = title;
   }
