@@ -23,7 +23,7 @@ const createHeader = async (main, document) => {
     navigationGroup.children[navigationGroup.children.length - 2].remove();
 
     // Force append blog to the end of the navigation group
-    blog.innerHTML = '<a href="/blog" class="cmp-navigation__item-link">Blog</a>';
+    blog.innerHTML = '<a href="/lost-pet-protection/pet-tags.html" class="cmp-navigation__item-link">Pet Tags</a>';
     navigationGroup.children[navigationGroup.children.length - 1].before(blog);
 
     navigationGroup.querySelectorAll('a').forEach((anc) => {
