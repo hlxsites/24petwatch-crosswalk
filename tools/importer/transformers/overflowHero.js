@@ -1,6 +1,5 @@
 /* global WebImporter */
 function createOverflowHero(currentBlock, main, document) {
-
   const discount = currentBlock.querySelector('div.cmp-container--rounded-all');
   discount.remove();
 
@@ -40,7 +39,8 @@ function createOverflowHero(currentBlock, main, document) {
 
   let blockTitle;
   if (blockClassList.length > 0) {
-    blockTitle = title + ' (' + blockClassList.join(',') + ')';
+     //blockTitle = title + ' (' + blockClassList.join(',') + ')';
+     blockTitle = `${title} (${blockClassList.join(',')})`;
   } else {
     blockTitle = title;
   }
