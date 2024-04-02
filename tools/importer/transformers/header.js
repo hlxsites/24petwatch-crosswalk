@@ -1,8 +1,6 @@
 const createHeader = async (main, document) => {
   const header = main.querySelector('div.page-header');
 
-  //console.log(header.outerHTML);
-
   if (header) {
     const logo = document.createElement('span');
     logo.classList.add('icon');
