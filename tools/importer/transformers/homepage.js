@@ -4,7 +4,7 @@ import createCarousel from './carousel.js';
 import createColumns from './columns.js';
 import createTeaser from './teaser.js';
 import createImageList from './imageList.js';
-import createOverflowHero from './overflowHero.js';
+//import createOverflowHero from './overflowHero.js';
 import createColumnsFlex from './columnsFlex.js';
 
 function createSection(currentBlock, main, document) {
