@@ -39,8 +39,7 @@ function createOverflowHero(currentBlock, main, document) {
 
   let blockTitle;
   if (blockClassList.length > 0) {
-     //blockTitle = title + ' (' + blockClassList.join(',') + ')';
-     blockTitle = `${title} (${blockClassList.join(',')})`;
+    blockTitle = `${title} (${blockClassList.join(',')})`;
   } else {
     blockTitle = title;
   }
