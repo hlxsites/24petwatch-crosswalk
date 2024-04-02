@@ -1,5 +1,4 @@
 /* global WebImporter */
-
 function createOverflowHero(currentBlock, main, document) {
 
   const discount = currentBlock.querySelector('div.cmp-container--rounded-all');
