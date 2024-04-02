@@ -37,10 +37,10 @@ function createSection(currentBlock, main, document) {
     createColumns(currentBlock, main, document);
   }
 
-  const overflowHero = currentBlock.querySelector('div.overflowhero');
+ /* const overflowHero = currentBlock.querySelector('div.overflowhero');
   if (overflowHero) {
     createOverflowHero(currentBlock, main, document);
-  }
+  }*/
 
   const imageList = currentBlock.querySelector('div.aem-Grid.aem-Grid--12.aem-Grid--default--12 ul.cmp-image-list__list');
   if (imageList) {
